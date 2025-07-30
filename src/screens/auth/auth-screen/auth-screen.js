@@ -47,9 +47,12 @@ const styles = StyleSheet.create({
   },
   brandingContainer: {
     position: 'absolute',
-    top: 20,
+    top: 30,
     right: 20,
     alignItems: 'flex-end',
+    height:60,
+    width:100,
+    backgroundColor:Colors.primary
   },
   brandingText: {
     fontSize: 24,
