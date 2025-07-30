@@ -1,5 +1,17 @@
+/* eslint-disable react/self-closing-comp */
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { View, StyleSheet, TouchableOpacity, Text, ImageBackground } from 'react-native';
+=======
+import {
+  View,
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
+// import { BlurView } from '@react-native-community/blur';
+>>>>>>> 4092ba0043c02d5050ec75f41fe1e9a3965896e3
 import Colors from '../../../constants/colors/colors';
 import { CustomButton, CustomInput } from '../../../components';
 
@@ -24,6 +36,7 @@ const handleLogin = () => {
 
   return (
     <View style={styles.container}>
+<<<<<<< HEAD
       {/* Background image without blur */}
       <ImageBackground
         source={require('../../../assets/images/bg.png')}
@@ -32,6 +45,14 @@ const handleLogin = () => {
       />
 
       {/* Login form */}
+=======
+       <ImageBackground
+        source={require('../../../assets/images/bg.png')}
+        style={styles.backgroundImage}
+        resizeMode="cover"
+      ></ImageBackground>
+
+>>>>>>> 4092ba0043c02d5050ec75f41fe1e9a3965896e3
       <View style={styles.formContainer}>
         <View style={styles.loginBox}>
           <CustomInput
@@ -50,7 +71,7 @@ const handleLogin = () => {
           />
 
           <View style={styles.rememberRow}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.checkboxContainer}
               onPress={() => setRememberMe(!rememberMe)}
             >
@@ -60,7 +81,9 @@ const handleLogin = () => {
               <Text style={styles.rememberText}>Keep me logged in</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ForgotPassword')}
+            >
               <Text style={styles.forgotPassword}>Forgot Password?</Text>
             </TouchableOpacity>
           </View>
@@ -79,7 +102,7 @@ const handleLogin = () => {
             />
           </View>
         </View>
-      </View>
+      </View> 
     </View>
   );
 };
@@ -87,11 +110,11 @@ const handleLogin = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
+    // backgroundColor: Colors.background,
   },
   backgroundImage: {
-    height: '50%',
-    width: '100%',
+    // height: '50%',
+    // width: '100%',
   },
   formContainer: {
     flex: 1,

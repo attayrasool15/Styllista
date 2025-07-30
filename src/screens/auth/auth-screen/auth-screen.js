@@ -20,7 +20,7 @@ const AuthScreen = ({ navigation }) => {
         <View style={styles.buttonContainer}>
           <CustomButton
             title="LOG IN"
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => navigation.navigate('LogIn')}
             buttonStyle={styles.loginButton}
             textStyle={styles.buttonText}
           />
