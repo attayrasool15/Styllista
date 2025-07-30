@@ -1,6 +1,7 @@
 // CustomButton.js
 import React from 'react';
 import { TouchableOpacity, Text, ActivityIndicator, StyleSheet } from 'react-native';
+
 import Colors from '../constants/colors/colors';
 
 const CustomButton = ({ title, onPress, loading, style }) => {
