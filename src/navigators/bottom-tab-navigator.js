@@ -2,6 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen, BlogScreen, ProfileScreen, CalendarScreen } from '../screens';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Colors from '../constants/colors/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -9,21 +10,15 @@ function BottomTabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = focused ? 'home' : 'home';
-          } else if (route.name === 'Blog') {
-            iconName = focused ? 'article' : 'article';
-          } else if (route.name === 'Calendar') {
-            iconName = focused ? 'calendar-today' : 'calendar-today';
-          } else if (route.name === 'Profile') {
-            iconName = focused ? 'person' : 'person-outline';
-          }
-
-          return <Icon name={iconName} size={size} color={color} />;
-        },
+      tabBarIcon: ({ focused, color, size }) => {
+  const icons = {
+    Home: focused ? 'home' : 'home-filled',
+    Blog: focused ? 'article' : 'article-outline',
+    Calendar: focused ? 'calendar-today' : 'calendar-today-outline',
+    Profile: focused ? 'person' : 'person-outline',
+  };
+  return <Icon name={icons[route.name]} size={size} color={color} />;
+},
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.textMedium,
         tabBarStyle: {

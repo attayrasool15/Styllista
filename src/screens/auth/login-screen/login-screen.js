@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, ImageBackground, StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { BlurView } from '@react-native-community/blur';
+import { View, StyleSheet, TouchableOpacity, Text, ImageBackground } from 'react-native';
 import Colors from '../../../constants/colors/colors';
 import { CustomButton, CustomInput } from '../../../components';
 
@@ -10,36 +9,31 @@ const LoginScreen = ({ navigation }) => {
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    setLoading(true);
-    // Simulate login process
-    setTimeout(() => {
-      setLoading(false);
+const handleLogin = () => {
+  setLoading(true);
+  setTimeout(() => {
+    try {
       navigation.navigate('MainApp');
-    }, 1500);
-  };
+    } catch (error) {
+      console.error('Navigation error:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, 1500);
+};
 
   return (
     <View style={styles.container}>
-      {/* Top half with background image */}
+      {/* Background image without blur */}
       <ImageBackground
         source={require('../../../assets/images/bg.png')}
         style={styles.backgroundImage}
         resizeMode="cover"
-      >
-        <BlurView
-          style={styles.blurView}
-          blurType="light"
-          blurAmount={10}
-          reducedTransparencyFallbackColor="white"
-        />
-      </ImageBackground>
+      />
 
-      {/* Bottom half with login form */}
+      {/* Login form */}
       <View style={styles.formContainer}>
-        {/* Login box */}
         <View style={styles.loginBox}>
-          {/* Email Input */}
           <CustomInput
             placeholder="Email"
             value={email}
@@ -48,7 +42,6 @@ const LoginScreen = ({ navigation }) => {
             autoCapitalize="none"
           />
 
-          {/* Password Input */}
           <CustomInput
             placeholder="Password"
             value={password}
@@ -56,7 +49,6 @@ const LoginScreen = ({ navigation }) => {
             secureTextEntry
           />
 
-          {/* Remember me and Forgot password row */}
           <View style={styles.rememberRow}>
             <TouchableOpacity 
               style={styles.checkboxContainer}
@@ -73,7 +65,6 @@ const LoginScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
 
-          {/* Buttons */}
           <View style={styles.buttonRow}>
             <CustomButton
               title="LOGIN"
@@ -101,13 +92,6 @@ const styles = StyleSheet.create({
   backgroundImage: {
     height: '50%',
     width: '100%',
-  },
-  blurView: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 100,
   },
   formContainer: {
     flex: 1,

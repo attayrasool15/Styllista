@@ -8,7 +8,7 @@ const CustomInput = ({  ...props }) => {
       
       <TextInput
         style={styles.input}
-        placeholderTextColor={colors.textSecondary}
+        placeholderTextColor={Colors.secondary}
         {...props}
       />
     </View>
