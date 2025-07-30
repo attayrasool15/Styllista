@@ -1,6 +1,13 @@
+/* eslint-disable react/self-closing-comp */
 import React, { useState } from 'react';
-import { View, ImageBackground, StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { BlurView } from '@react-native-community/blur';
+import {
+  View,
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
+// import { BlurView } from '@react-native-community/blur';
 import Colors from '../../../constants/colors/colors';
 import { CustomButton, CustomInput } from '../../../components';
 
@@ -21,25 +28,14 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Top half with background image */}
-      <ImageBackground
+       <ImageBackground
         source={require('../../../assets/images/bg.png')}
         style={styles.backgroundImage}
         resizeMode="cover"
-      >
-        <BlurView
-          style={styles.blurView}
-          blurType="light"
-          blurAmount={10}
-          reducedTransparencyFallbackColor="white"
-        />
-      </ImageBackground>
+      ></ImageBackground>
 
-      {/* Bottom half with login form */}
       <View style={styles.formContainer}>
-        {/* Login box */}
         <View style={styles.loginBox}>
-          {/* Email Input */}
           <CustomInput
             placeholder="Email"
             value={email}
@@ -48,7 +44,6 @@ const LoginScreen = ({ navigation }) => {
             autoCapitalize="none"
           />
 
-          {/* Password Input */}
           <CustomInput
             placeholder="Password"
             value={password}
@@ -56,9 +51,8 @@ const LoginScreen = ({ navigation }) => {
             secureTextEntry
           />
 
-          {/* Remember me and Forgot password row */}
           <View style={styles.rememberRow}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.checkboxContainer}
               onPress={() => setRememberMe(!rememberMe)}
             >
@@ -68,12 +62,13 @@ const LoginScreen = ({ navigation }) => {
               <Text style={styles.rememberText}>Keep me logged in</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ForgotPassword')}
+            >
               <Text style={styles.forgotPassword}>Forgot Password?</Text>
             </TouchableOpacity>
           </View>
 
-          {/* Buttons */}
           <View style={styles.buttonRow}>
             <CustomButton
               title="LOGIN"
@@ -88,7 +83,7 @@ const LoginScreen = ({ navigation }) => {
             />
           </View>
         </View>
-      </View>
+      </View> 
     </View>
   );
 };
@@ -96,11 +91,11 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
+    // backgroundColor: Colors.background,
   },
   backgroundImage: {
-    height: '50%',
-    width: '100%',
+    // height: '50%',
+    // width: '100%',
   },
   blurView: {
     position: 'absolute',
