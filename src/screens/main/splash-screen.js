@@ -13,7 +13,7 @@ const SplashScreen = ({ navigation }) => {
 
   return (
     <ImageBackground 
-      source={require('./path/to/background.jpg')}
+      source={require('../../assets/images/bg.png')}
       style={[styles.container, { backgroundColor: Colors.background }]}
     >
       <View style={styles.content}>

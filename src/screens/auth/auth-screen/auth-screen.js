@@ -6,7 +6,7 @@ import Colors from '../../../constants/colors/colors';
 const AuthScreen = ({ navigation }) => {
   return (
     <ImageBackground 
-      source={require('./assets/auth-background.jpg')} // Your background image
+      source={require('../../../assets/images/bg.png')} // Your background image
       style={styles.backgroundImage}
       resizeMode="cover"
     >
