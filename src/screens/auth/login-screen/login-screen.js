@@ -8,6 +8,16 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = () => {
+    setLoading(true);
+    // Simulate login process
+    setTimeout(() => {
+      setLoading(false);
+      navigation.navigate('MainApp');
+    }, 1500);
+  };
 
   return (
     <View style={styles.container}>
@@ -36,7 +46,6 @@ const LoginScreen = ({ navigation }) => {
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
-            style={styles.input}
           />
 
           {/* Password Input */}
@@ -45,7 +54,6 @@ const LoginScreen = ({ navigation }) => {
             value={password}
             onChangeText={setPassword}
             secureTextEntry
-            style={styles.input}
           />
 
           {/* Remember me and Forgot password row */}
@@ -68,20 +76,16 @@ const LoginScreen = ({ navigation }) => {
           {/* Buttons */}
           <View style={styles.buttonRow}>
             <CustomButton
-              style={styles.loginButton}
-              onPress={() => navigation.navigate('MainApp')}
-              variant="primary"
-            >
-              <Text style={styles.loginButtonText}>LOGIN</Text>
-            </CustomButton>
-
+              title="LOGIN"
+              onPress={handleLogin}
+              loading={loading}
+              style={[styles.button, styles.loginButton]}
+            />
             <CustomButton
-              style={styles.cancelButton}
+              title="CANCEL"
               onPress={() => navigation.goBack()}
-              variant="secondary"
-            >
-              <Text style={styles.cancelButtonText}>CANCEL</Text>
-            </CustomButton>
+              style={[styles.button, styles.cancelButton]}
+            />
           </View>
         </View>
       </View>
@@ -120,9 +124,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 5,
-  },
-  input: {
-    marginBottom: 15,
   },
   rememberRow: {
     flexDirection: 'row',
@@ -164,21 +165,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  loginButton: {
+  button: {
     flex: 1,
+    borderRadius: 10,
+  },
+  loginButton: {
     marginRight: 10,
+    backgroundColor: Colors.primary,
   },
   cancelButton: {
-    flex: 1,
     marginLeft: 10,
-  },
-  loginButtonText: {
-    color: Colors.textLight,
-    fontWeight: 'bold',
-  },
-  cancelButtonText: {
-    color: Colors.textLight,
-    fontWeight: 'bold',
+    backgroundColor: Colors.textDark,
   },
 });
 
