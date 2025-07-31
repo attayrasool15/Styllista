@@ -8,7 +8,7 @@ const CustomInput = ({  ...props }) => {
       
       <TextInput
         style={styles.input}
-        placeholderTextColor={Colors.secondary}
+        placeholderTextColor={Colors.background}
         {...props}
       />
     </View>
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.accent,
+    backgroundColor: Colors.greyDark,
     borderRadius: 10,
     paddingHorizontal: 15,
     marginBottom: 15,

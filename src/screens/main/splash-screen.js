@@ -1,68 +1,98 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  Animated,
+} from 'react-native';
 import Colors from '../../constants/colors/colors';
 
 const SplashScreen = ({ navigation }) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
   useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: true,
+    }).start();
+
     const timer = setTimeout(() => {
-      navigation.replace('Auth'); // Using replace instead of navigate to prevent going back
-    }, 5000);
+      navigation.replace('Auth');
+    }, 4000);
 
     return () => clearTimeout(timer);
-  }, [navigation]);
+  }, [fadeAnim, navigation]);
 
   return (
-    <ImageBackground 
+    <ImageBackground
       source={require('../../assets/images/bg.png')}
-      style={[styles.container, { backgroundColor: Colors.background }]}
+      style={styles.background}
+      resizeMode="cover"
     >
-      <View style={styles.content}>
-        <Text style={[styles.title, { color: Colors.primary }]}>Stylista</Text>
-        <Text style={[styles.version, { color: Colors.textMedium }]}>
-          Stylista version 2.2.0
-        </Text>
-        <Text style={[styles.publisher, { color: Colors.publisherText }]}>
-          from the publishers of
-        </Text>
-        <Text style={[styles.magazine, { color: Colors.magazineText }]}>
-          Salon Confidential Magazine
-        </Text>
+      <View style={styles.overlay}>
+        <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
+          {/* Logo */}
+          <Image
+            source={require('../../assets/images/logo.png')}
+            style={styles.logo}
+            resizeMode="contain"
+          />
+
+          <Text style={styles.title}>Stylista</Text>
+          <Text style={styles.version}>version 2.2.0</Text>
+
+          <Text style={styles.publisher}>from the publishers of</Text>
+          <Text style={styles.magazine}>Salon Confidential Magazine</Text>
+        </Animated.View>
       </View>
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.7)',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 30,
   },
   content: {
     alignItems: 'center',
-    padding: 20,
-    borderRadius: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Slightly transparent white
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 25,
   },
   title: {
-    fontSize: 48,
+    fontSize: 42,
     fontWeight: 'bold',
-    marginBottom: 20,
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
+    color: Colors.primary,
+    marginBottom: 10,
   },
   version: {
-    fontSize: 18,
-    marginBottom: 40,
+    fontSize: 16,
+    color: Colors.textMedium,
+    marginBottom: 30,
   },
   publisher: {
-    fontSize: 16,
-    marginBottom: 5,
+    fontSize: 15,
+    color: Colors.textDark,
+    marginBottom: 4,
   },
   magazine: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '600',
+    color: Colors.magazineText,
   },
 });
 

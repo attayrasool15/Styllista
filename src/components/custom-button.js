@@ -1,20 +1,37 @@
 // CustomButton.js
 import React from 'react';
-import { TouchableOpacity, Text, ActivityIndicator, StyleSheet } from 'react-native';
-
+import {
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+} from 'react-native';
 import Colors from '../constants/colors/colors';
 
-const CustomButton = ({ title, onPress, loading, style }) => {
+const CustomButton = ({
+  title,
+  onPress,
+  loading,
+  style,
+  backgroundColor,
+  textColor,
+}) => {
   return (
-    <TouchableOpacity 
-      style={[styles.button, style]}
+    <TouchableOpacity
+      style={[
+        styles.button,
+        backgroundColor && { backgroundColor },
+        style,
+      ]}
       onPress={onPress}
       disabled={loading}
     >
       {loading ? (
-        <ActivityIndicator color={Colors.white} />
+        <ActivityIndicator color={textColor || Colors.white} />
       ) : (
-        <Text style={styles.buttonText}>{title}</Text>
+        <Text style={[styles.buttonText, textColor && { color: textColor }]}>
+          {title}
+        </Text>
       )}
     </TouchableOpacity>
   );
@@ -26,7 +43,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
-    marginBottom:5,
+    marginBottom: 5,
     justifyContent: 'center',
   },
   buttonText: {

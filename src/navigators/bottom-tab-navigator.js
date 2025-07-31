@@ -29,8 +29,8 @@ function BottomTabNavigator() {
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.textMedium,
         tabBarStyle: {
-          paddingBottom: 5,
-          height: 60,
+          paddingBottom: 15,
+          height: 75,
         },
         headerShown: false,
       })}

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
+import Colors from '../../constants/colors/colors';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -25,7 +26,6 @@ const HomeScreen = () => {
       {
         text: 'Logout',
         onPress: () => {
-          // Add any session clearing logic here
           navigation.reset({
             index: 0,
             routes: [{ name: 'LogIn' }],
@@ -39,13 +39,15 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.topBar}>
         <TouchableOpacity onPress={handleLogout} style={styles.iconWrapper}>
-          <Icon name="logout" size={40} color={isOn ? '#00e676' : '#b0bec5'} />
+          <Icon name="logout" size={30} color={Colors.greyDark} />
         </TouchableOpacity>
       </View>
 
       <View style={styles.container}>
         <Image
-          source={{ uri: 'https://i.pravatar.cc/300?img=15' }}
+          source={{
+            uri: 'https://cdn.shopify.com/s/files/1/1038/1798/files/32._Messy_Crop_with_Violet_Streaks_Short_Hairstyles_With_Layers.png?v=1733879854',
+          }}
           style={styles.profileImage}
         />
         <Text style={styles.name}>Ariana Bloom</Text>
@@ -73,24 +75,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   profileImage: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
+    width: 200,
+    height: 200,
+    borderRadius: 100,
     marginBottom: 20,
     borderWidth: 2,
-    borderColor: '#ccc',
+    borderColor: Colors.black,
   },
   name: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: '400',
     color: '#333',
     marginBottom: 8,
   },
   profession: {
-    fontSize: 16,
-    color: '#888',
+    fontSize: 20,
+    color: '#333',
+    fontFamily: '',
+    fontWeight: 'bold',
     textAlign: 'center',
   },
 });
-
 export default HomeScreen;
