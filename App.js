@@ -1,5 +1,5 @@
 import React from 'react'
-import AppNavigator from './src/navigators/app-navigator'
+import AppNavigator from './src/assets/images/navigators/app-navigator'
 
 const App = () => {
   return (

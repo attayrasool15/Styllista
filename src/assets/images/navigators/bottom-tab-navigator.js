@@ -6,9 +6,9 @@ import {
   BlogScreen,
   ProfileScreen,
   CalendarScreen,
-} from '../screens';
+} from '../../../screens';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Colors from '../constants/colors/colors';
+import Colors from '../../../constants/colors/colors';
 
 const Tab = createBottomTabNavigator();
 

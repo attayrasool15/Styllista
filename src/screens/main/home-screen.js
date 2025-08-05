@@ -51,7 +51,7 @@ const HomeScreen = () => {
           style={styles.profileImage}
         />
         <Text style={styles.name}>Ariana Bloom</Text>
-        <Text style={styles.profession}>Hair Stylist / Makeup Artist</Text>
+        <Text style={styles.profession}>Hair Stylist / Makeup Artist </Text>
       </View>
     </SafeAreaView>
   );
@@ -89,10 +89,9 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   profession: {
-    fontSize: 20,
+    fontSize: 21,
     color: '#333',
-    fontFamily: '',
-    fontWeight: 'bold',
+    fontFamily: 'HarlekinRegular',
     textAlign: 'center',
   },
 });

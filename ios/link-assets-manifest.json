@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/HarlekinMedium.ttf",
+      "sha1": "3f5d80b1e0cc3ed43cbaf5a255a584733a5835c6"
+    },
+    {
+      "path": "src/assets/fonts/HarlekinRegular.ttf",
+      "sha1": "edd9ee001b220936c4e09d0d4f8a153388123bc1"
+    }
+  ]
+}
