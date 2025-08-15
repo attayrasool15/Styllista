@@ -73,8 +73,14 @@ const LoginScreen = ({ navigation }) => {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={{ flex: 1 }}
       >
-        <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
+        <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          keyboardShouldPersistTaps="handled"
+        >
           <View style={styles.formContainer}>
+            <View style={styles.loginHeader}>
+              <Text style={styles.loginText}>Enter Login Details</Text>
+            </View>
             <View style={styles.loginBox}>
               <CustomInput
                 placeholder="Email"
@@ -86,7 +92,9 @@ const LoginScreen = ({ navigation }) => {
                 keyboardType="email-address"
                 autoCapitalize="none"
               />
-              {emailError !== '' && <Text style={styles.errorText}>{emailError}</Text>}
+              {emailError !== '' && (
+                <Text style={styles.errorText}>{emailError}</Text>
+              )}
 
               <CustomInput
                 placeholder="Password"
@@ -97,20 +105,26 @@ const LoginScreen = ({ navigation }) => {
                 }}
                 secureTextEntry
               />
-              {passwordError !== '' && <Text style={styles.errorText}>{passwordError}</Text>}
+              {passwordError !== '' && (
+                <Text style={styles.errorText}>{passwordError}</Text>
+              )}
 
               <View style={styles.rememberRow}>
                 <TouchableOpacity
                   style={styles.checkboxContainer}
                   onPress={() => setRememberMe(!rememberMe)}
                 >
-                  <View style={[styles.checkbox, rememberMe && styles.checkedBox]}>
+                  <View
+                    style={[styles.checkbox, rememberMe && styles.checkedBox]}
+                  >
                     {rememberMe && <Text style={styles.checkmark}>✓</Text>}
                   </View>
                   <Text style={styles.rememberText}>Keep me logged in</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => navigation.navigate('ForgotPasswordScreen')}>
+                <View style={{ width: 15 }} />
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('ForgotPasswordScreen')}
+                >
                   <Text style={styles.forgotPassword}>Forgot Password?</Text>
                 </TouchableOpacity>
               </View>
@@ -173,6 +187,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 5,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
   },
   rememberRow: {
     flexDirection: 'row',
@@ -205,12 +221,12 @@ const styles = StyleSheet.create({
   },
   rememberText: {
     color: Colors.black,
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: 'bold',
   },
   forgotPassword: {
     color: Colors.primary,
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: 'bold',
   },
   buttonRow: {
@@ -237,6 +253,18 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginTop: -5,
     marginLeft: 4,
+  },
+  loginText: {
+    color: Colors.greyLight,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  loginHeader: {
+    backgroundColor: Colors.primary,
+    paddingVertical: 15,
+    alignItems: 'center',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
 });
 

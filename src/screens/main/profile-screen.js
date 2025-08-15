@@ -31,7 +31,7 @@ const ProfileScreen = () => {
         />
 
         <Text style={styles.name}>Nikki Chase</Text>
-        <Text style={styles.profession}>Hair stylist/makeup artist</Text>
+        <Text style={styles.profession}>Hair stylist/makeup artist </Text>
 
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Current Password:</Text>
@@ -89,10 +89,10 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   profession: {
-    fontSize: 16,
-    fontStyle: 'italic',
-    color: '#666',
+    fontSize: 19,
+    color: 'black',
     marginBottom: 20,
+    fontFamily:"HarlekinMedium",
   },
   inputGroup: {
     width: '100%',
