@@ -8,28 +8,42 @@ require Pod::Executable.execute_command('node', ['-p',
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
-linkage = ENV['USE_FRAMEWORKS']
-if linkage != nil
-  Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
-  use_frameworks! :linkage => linkage.to_sym
-end
+# ✅ Force STATIC frameworks (prevents dynamic Hermes.framework)
+linkage = ENV['USE_FRAMEWORKS'] || 'static'
+Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
+use_frameworks! :linkage => linkage.to_sym
 
 target 'Stylista' do
   config = use_native_modules!
 
   use_react_native!(
     :path => config[:reactNativePath],
-    # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  # (Optional) If you had Flipper, disable it for Release to avoid symbol weirdness
+  # use_flipper!({ 'Flipper' => '0.125.0' }) # dev only
+
   post_install do |installer|
-    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
     react_native_post_install(
       installer,
       config[:reactNativePath],
-      :mac_catalyst_enabled => false,
-      # :ccache_enabled => true
+      :mac_catalyst_enabled => false
     )
+
+    # 🔧 Ensure DWARF with dSYM for all Pods (Release)
+    installer.pods_project.build_configurations.each do |bc|
+      if bc.name == 'Release'
+        bc.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
+        bc.build_settings['STRIP_INSTALLED_PRODUCT'] = 'NO'
+      end
+    end
+
+    # 🔧 (Safety) Make hermes-engine static if anything tries to make it dynamic
+    installer.pod_targets.each do |pt|
+      if pt.name == 'hermes-engine' && pt.respond_to?(:build_type)
+        pt.instance_variable_set(:@build_type, Pod::BuildType.static_library)
+      end
+    end
   end
 end
